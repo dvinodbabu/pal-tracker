@@ -18,13 +18,16 @@ import java.util.TimeZone;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class JdbcTimeEntryRepositoryTest {
+
+    private String testDBUrl = "jdbc:mysql://localhost:3306/tracker_test?user=tracker&useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false";
+
     private TimeEntryRepository subject;
     private JdbcTemplate jdbcTemplate;
 
     @Before
     public void setUp() throws Exception {
         MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));
+        dataSource.setUrl(testDBUrl);
 
         subject = new JdbcTimeEntryRepository(dataSource);
 

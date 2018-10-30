@@ -21,7 +21,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 public class SecurityApiTest {
 
     @LocalServerPort
-    private String port;
+    private String serverPort;
+
     private TestRestTemplate authorizedRestTemplate;
 
     @Autowired
@@ -30,7 +31,7 @@ public class SecurityApiTest {
     @Before
     public void setUp() throws Exception {
         RestTemplateBuilder builder = new RestTemplateBuilder()
-            .rootUri("http://localhost:" + port)
+            .rootUri("http://localhost:" + serverPort)
             .basicAuthorization("user", "password");
 
         authorizedRestTemplate = new TestRestTemplate(builder);
